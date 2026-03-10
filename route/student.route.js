@@ -82,9 +82,9 @@ router.put('/:id', (request, response) => {
     const id = request.params.id
     const {name, class_room, major} = request.body
 
-    const sql = "UPDATE students SET name = ?, class_room = ?, major = ? WHERE id = ?"
+    const sql = `UPDATE students SET name = '${name}', class_room = '${class_room}', major = '${major}' WHERE id = ${id}`
 
-    db.query(sql, [name, class_room, major, id], (error, result) => {
+    db.query(sql, (error, result) => {
 
         if (error) {
             return response.status(500).send({
